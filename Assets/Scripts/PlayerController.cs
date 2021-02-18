@@ -4,51 +4,51 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    float speed = 10f;
-    float rotationSpeed = 1;
+    private Rigidbody body;
     Quaternion rotationAngle = new Quaternion();
+    public float speed = 1f;
+    float rotationSpeed = 2.5f;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        this.body = this.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
+    {
+        this.Controls();
+    }
+
+    private void Controls()
     {
         float rotation = 0;
-        Vector3 force = new Vector3();
-        Rigidbody body = GetComponent<Rigidbody>();
-        if(Input.GetKey(KeyCode.W)) {
-            body.velocity = transform.forward * speed;
-        }
-        else if(Input.GetKey(KeyCode.S)) {
-            body.velocity = -transform.forward * speed;
-        }
-        else if(Input.GetKey(KeyCode.A)) {
-            body.velocity = -transform.right * speed;
-        }
-        else if(Input.GetKey(KeyCode.D)) {
-            body.velocity = transform.right * speed;
-        }
-        else {
-            body.velocity = new Vector3(0, body.velocity.y, 0);
+        Vector3 move = body.position;
+       
+        if(Input.anyKey)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+                speed = speed * 2;
+
+            if (Input.GetKey(KeyCode.W))
+                move += transform.forward * speed;
+            else if (Input.GetKey(KeyCode.S))
+                move += -transform.forward * speed;
+
+            if (Input.GetKey(KeyCode.A))
+                move += -transform.right * speed;
+            else if (Input.GetKey(KeyCode.D))
+                move += transform.right * speed;
+
+            if (Input.GetKey(KeyCode.RightArrow))
+                rotation = rotationSpeed;
+            else if (Input.GetKey(KeyCode.LeftArrow))
+                rotation = -rotationSpeed;
+            else
+                rotation = 0;
         }
 
-        if(Input.GetKey(KeyCode.RightArrow)) {
-            rotation = 1;
-        }
-        else if(Input.GetKey(KeyCode.LeftArrow)) {
-            rotation = -1;
-        } else {
-            rotation = 0;
-        }
-        
-        // force.y = body.velocity.y;
-        // body.velocity = transform.forward * force;
+        //apply friction
+        body.MovePosition(move);
         rotationAngle = Quaternion.Euler(0, rotationAngle.eulerAngles.y + rotation, 0);
         transform.rotation = rotationAngle;
     }
