@@ -372,6 +372,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4397058474790213369, guid: 15f404b0dc1a1ad41b6b1549382302a3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509745661260856210, guid: 15f404b0dc1a1ad41b6b1549382302a3,
+        type: 3}
+      propertyPath: m_Name
+      value: barrel
+      objectReference: {fileID: 0}
     - target: {fileID: 8682880348064552005, guid: 15f404b0dc1a1ad41b6b1549382302a3,
         type: 3}
       propertyPath: m_RootOrder
@@ -621,6 +631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Spawn Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496992337324007417, guid: 35cc25a57d805bf418ddfa763090cecf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35cc25a57d805bf418ddfa763090cecf, type: 3}
